@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwollenHippo EMR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+    <body style= "background-color: #3f3d3c;">
+    <div class="container mt-5">
+        <form id="mainForm" style="width: 1500px; margin: 0 auto; margin-top: 25px; margin-bottom: 25px; background-color: #e99d78;" class=" card col-12 col-md-8 col-lg-6 offset-2 offset-md-2 form-container">
+            <div class = "d-flex align-items-center justify-content-start" style="gap: 10px; padding: 10px;">
+                <h1 style="text-align: center; background-color: #e99d78;">
+                    SwollenHippo Electronic Medical Records
+                </h1>
+                <img src="images/Hippo-Isolated.png" alt="Hippo Logo" style="width: 100px; height: 100px;">
+            </div>
+
+        <div style="display: none; background-color: #e99d78;" id = "formRegistration" class="card col-12 form-container">
+            <div class="card-header bg-white">
+                    <h2 style="text-align: center; font-style: normal; font-size: medium;">Registration</h2>
+                <div class="flex-center" style="padding: 10px;">
+
+                    <label id="lblEmail" class="form-label mt-3" for="txtEmail">Email</label>
+                    <input id="txtEmail" placeholder="Email" aria-label="Email" type="email" class="form-control" required>
+           
+                    <label id="lblPassword" class="form-label mt-3" for="txtPassword">Password</label>
+                    <input id="txtPassword" placeholder="Password" aria-label="Password" type="password" class="form-control" required>
+                    <input id="txtConPassword" placeholder="Confirm Password" aria-label="Confirm Password" type="password" class="form-control" required>
+
+                    <div class="flex-container" style="display: flex; justify-content: space-between;"> 
+                        <div class="flex-item">
+                            <label id="lblFirstName" class="form-label mt-3" for="txtFirstName">First Name</label>
+                            <input id="txtFirstName" placeholder="First Name" aria-label="First Name" type="text" class="form-control" required>
+                        </div>
+                        <div class="flex-item">
+                            <label id="lblMiddleName" class="form-label mt-3" for="txtMiddleName">Middle</label>
+                            <input id="txtMiddleName" placeholder="Middle Name" aria-label="Middle Name" type="text" class="form-control" required>
+                        </div>
+                        <div class="flex-item">
+                            <label id="lblLastName" class="form-label mt-3" for="txtLastName">Last Name</label>
+                            <input id="txtLastName" placeholder="Last Name" aria-label="Last Name" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+                <label id="lblAddress" class="form-label mt-3" for="txtAddress">Address</label>
+                <input id="txtAddress" placeholder="Address" aria-label="Address" type="text" class="form-control" required>
+
+                <div class="flex-container" style="display: flex; justify-content: space-between;">
+                    <div class="flex-item">
+                        <label id="lblCity" class="form-label mt-3" for="txtCity">City</label>
+                        <input id="txtCity" placeholder="City" aria-label="City" type="text" class="form-control" required>
+                    </div>
+                    <div class="flex-item">
+                        <label id="lblState" class="form-label mt-3" for="txtState">State</label>
+                        <input id="txtState" placeholder="State" aria-label="State" type="text" class="form-control" required>
+                    </div>
+                    <div class="flex-item">
+                        <label id="lblZip" class="form-label mt-3" for="txtZip">Zip</label>
+                        <input id="txtZip" placeholder="Zip" aria-label="Zip" type="text" class="form-control" required>
+                    </div>
+                </div>
+
+                <label id="lblPhone" class="form-label mt-3" for="txtPhone">Phone</label>
+                <input id="txtPhone" placeholder="Phone" aria-label="Phone" type="tel" class="form-control" required>
+
+                <button id="btnRegisterSubmit" type="button" class="btn btn-primary col-12 mt-3">Register</button>
+                <button id="btnSwitchToLogin" type="button" class="btn btn-primary col-12 mt-3">Switch to Login</button>
+            </div>
+       
+        </div>
+        <div id="loginForm" class="card col-12 form-container" style= "background-color: #e99d78; display: block;">
+            <div class="card-header bg-white">
+                <h2 style="text-align: center; font-style: normal; font-size: medium;">Login</h2>
+                <div class="flex-center" style="padding: 10px;">
+                    <label id="lblEmailLogin" class="form-label mt-3" for="txtEmail">Email</label>
+                    <input id="txtEmailLogin" placeholder="Email" aria-label="Email" type="email" class="form-control" >
+                    <label id="lblPasswordLogin" class="form-label mt-3" for="txtPassword">Password</label>
+                    <input id="txtPasswordLogin" placeholder="Password" aria-label="Password" type="password" class="form-control" >
+                    <button id="btnLogin" type="button" class="btn btn-primary col-12 mt-3">Login</button>
+                    <button id="btnSwitchToRegSubmit" type="button" class="btn btn-primary col-12 mt-3">Switch to Register</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    <script>
+        const registrationFields = document.getElementById("formRegistration");
+        const loginFields = document.getElementById("loginForm");
+        const btnLogin = document.getElementById("btnSwitchToLogin");
+        const btnSubmit = document.getElementById("btnSwitchToRegSubmit");
+        const btnRegister = document.getElementById("btnRegisterSubmit");
+        const btnLoginSubmit = document.getElementById("btnLogin");
+
+        btnLogin.addEventListener("click", function(){
+            registrationFields.style.display = "none";
+            loginFields.style.display = "block";
+        });
+
+        btnSubmit.addEventListener("click", function(){
+            registrationFields.style.display = "block";
+            loginFields.style.display = "none";
+        });
+
+        btnRegister.addEventListener("click", () => {
+            const email = document.getElementById("txtEmail").value;
+            const password = document.getElementById("txtPassword").value;
+            const conPassword = document.getElementById("txtConPassword").value;
+            const firstName = document.getElementById("txtFirstName").value;
+            const middleName = document.getElementById("txtMiddleName").value;
+            const lastName = document.getElementById("txtLastName").value;
+            const address = document.getElementById("txtAddress").value;
+            const city = document.getElementById("txtCity").value;
+            const state = document.getElementById("txtState").value;
+            const zip = document.getElementById("txtZip").value;
+            const phone = document.getElementById("txtPhone").value;
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+            const phoneRegex = /^\d{10}$/;
+            const zipRegex = /^\d{5}$/;
+
+            if(password !== conPassword){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Passwords do not match',
+                    text: 'Please make sure your passwords match'
+                });
+            }
+
+            if (email === "" || password === "" || conPassword === "" || firstName === "" || middleName === "" || lastName === "" || address === "" || city === "" || state === "" || zip === "" || phone === ""){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Please fill out all fields',
+                    text: 'Please make sure all fields are filled out'
+                });
+            }
+
+            if (!emailRegex.test(email)){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Email',
+                    text: 'Please enter a valid email'
+                });
+            }
+
+            if (!passwordRegex.test(password)){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Password',
+                    text: 'Password must be between 6 and 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter'
+                });
+            }
+
+            if (!phoneRegex.test(phone)){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Phone Number',
+                    text: 'Please enter a valid phone number'
+                });
+            }
+
+            if (!zipRegex.test(zip)){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Zip Code',
+                    text: 'Please enter a valid zip code'
+                });
+            }
+
+            if (password === conPassword && email !== "" && password !== "" && conPassword !== "" && firstName !== "" && middleName !== "" && lastName !== "" && address !== "" && city !== "" && state !== "" && zip !== "" && phone !== ""){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    text: 'You have successfully registered'
+                });
+            }
+        });
+
+        btnLoginSubmit.addEventListener("click", () => {
+            const email = document.getElementById("txtEmailLogin").value;
+            const password = document.getElementById("txtPasswordLogin").value;
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+            if (email === "" || password === ""){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Please fill out all fields',
+                    text: 'Please make sure all fields are filled out'
+                });
+            }
+
+            if (!emailRegex.test(email)){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Email',
+                    text: 'Please enter a valid email'
+                });
+            }
+
+            if (!passwordRegex.test(password)){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Password',
+                    text: 'Password must be between 6 and 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter'
+                });
+            }
+
+            if (email !== "" && password !== "" && emailRegex.test(email) && passwordRegex.test(password)){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: 'You have successfully logged in'
+                });
+            }
+        });
+    </script>
+    </body>
+</html>

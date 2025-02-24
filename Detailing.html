@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Request</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sandstone/bootstrap.min.css" integrity="sha384-zEpdAL7W11eTKeoBJK1g79kgl9qjP7g84KfK3AZsuonx38n8ad+f5ZgXtoSDxPOh" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body style= "background-color: #9c9a9a;">
+    <div class="container mt-5">
+        <form id="mainForm" style="width: 1500px; margin: 0 auto; margin-top: 25px; margin-bottom: 25px; background-color: #8ac4ef;" class=" card col-12 col-md-8 col-lg-6 offset-2 offset-md-2 form-container">
+            <div class = "d-flex align-items-center justify-content-start" style="gap: 10px; padding: 10px;">
+                <h1 style="text-align: center; background-color: #8ac4ef;">
+                    SwollenHippo Detailing
+                </h1>
+                <img src="images/Hippo-Isolated.png" alt="Hippo Logo" style="width: 100px; height: 100px;">
+            </div>
+
+            <div style="display: block; background-color: #dcdae5;" id = "formApt" class="card col-12 form-container">
+                <div class="card-header bg-white">
+                        <h2 style="text-align: center; font-style: normal; font-size: medium;">Registration</h2>
+                        <p style="text-align: center; background-color: #dacfca;">
+                            Please provide the information below and a customer service representative will call you to setup an appointment.
+                        </p>        
+                    <div class="flex-center" style="padding: 10px;">
+    
+                        <label id="lblEmail" class="form-label mt-3" for="txtEmail">Email</label>
+                        <input id="txtEmail" placeholder="Email" aria-label="Email" type="email" class="form-control" required>
+
+                        <div class="flex-container" style="display: flex; justify-content: space-between;"> 
+                            <div class="flex-item">
+                                <label id="lblFirstName" class="form-label mt-3" for="txtFirstName">First Name</label>
+                                <input id="txtFirstName" placeholder="First Name" aria-label="First Name" type="text" class="form-control" required>
+                            </div>
+                            <div class="flex-item">
+                                <label id="lblMiddleName" class="form-label mt-3" for="txtMiddleName">Middle</label>
+                                <input id="txtMiddleName" placeholder="Middle Name" aria-label="Middle Name" type="text" class="form-control">
+                            </div>
+                            <div class="flex-item">
+                                <label id="lblLastName" class="form-label mt-3" for="txtLastName">Last Name</label>
+                                <input id="txtLastName" placeholder="Last Name" aria-label="Last Name" type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <label id="lblPhone" class="form-label mt-3" for="txtPhone">Phone</label>
+                            <input id="txtPhone" placeholder="Phone" aria-label="Phone" type="tel" class="form-control" required>
+            
+                            <div class ="flex-item">
+                                <label id="lblService" class="form-label mt-3" for="txtService">Service Selection</label>
+                                <select id="txtService" class="form-select" aria-label="Service Selection" required>
+                                    <option value="1" aria-label="Choose Option">Choose Option</option>
+                                    <option value="2" aria-label="Full Detail">Full Detail</option>
+                                    <option value="3" aria-label="Interior Cleaning">Interior Cleaninig</option>
+                                </select>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <button id="btnRegisterApt" type="button" class="btn btn-primary col-12 mt-3">Request Appointment</button>
+                </div>
+                </form>
+                <script>
+                    const btnRegister = document.getElementById("formApt");
+                    const btnApt = document.getElementById("btnRegisterApt");
+            
+                    btnApt.addEventListener("click", () => {
+                        const email = document.getElementById("txtEmail").value;
+                        const firstName = document.getElementById("txtFirstName").value;
+                        const middleName = document.getElementById("txtMiddleName").value;
+                        const lastName = document.getElementById("txtLastName").value;
+                        const service = document.getElementById("txtService").value;
+                        const phone = document.getElementById("txtPhone").value;
+                        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                        const phoneRegex = /^\d{10}$/;
+                        
+                        if (email === "" || firstName === "" || lastName === "" || phone === "" || service === ""){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Please fill out all fields',
+                                text: 'Email, First and Last Name, Service Selection, and Phone Number are required'
+                            });
+                        }
+            
+                        if (!emailRegex.test(email)){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Email',
+                                text: 'Please enter a valid email'
+                            });
+                        }
+            
+                        if (!phoneRegex.test(phone)){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Invalid Phone Number',
+                                text: 'Please enter a valid phone number'
+                            });
+                        }
+
+                        else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Appointment Requested',
+                                text: 'A customer service representative will contact you shortly'
+                            });
+                        }
+                    });
+                    </script>
+            </div>
+        </body>
+    </html>
