@@ -24,7 +24,34 @@
         </div>
         <p class="mt-3">Data provided by <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a></p>
     </div>
-    <script>
+    <button id="install-btn" class="btn btn-primary mt-3">Install App</button>
+
+<script>
+    let deferredPrompt;
+    const installBtn = document.getElementById("install-btn");
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        deferredPrompt = event;
+        installBtn.style.display = "block";
+    });
+
+    installBtn.addEventListener("click", () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === "accepted") {
+                    console.log("User installed the app");
+                }
+                deferredPrompt = null;
+            });
+        }
+    });
+
+    window.addEventListener("appinstalled", () => {
+        console.log("App installed");
+        installBtn.style.display = "none";
+    });
         
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/jscott/service-worker.js")
