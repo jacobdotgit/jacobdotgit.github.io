@@ -4,7 +4,6 @@ self.addEventListener("install", (event) => {
         return cache.addAll([
           "/jscott/",
           "/jscott/index.html",
-          "/jscott/styles.css",
           "/jscott/script.js",
           "/jscott/manifest.json",
         ]);
