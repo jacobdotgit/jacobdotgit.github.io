@@ -2,11 +2,11 @@ self.addEventListener("install", (event) => {
     event.waitUntil(
       caches.open("weather-app-cache").then((cache) => {
         return cache.addAll([
-          "/",
-          "/index.html",
-          "/styles.css",
-          "/script.js",
-          "/manifest.json",
+          "/jscott/",
+          "/jscott/index.html",
+          "/jscott/styles.css",
+          "/jscott/script.js",
+          "/jscott/manifest.json",
         ]);
       })
     );
